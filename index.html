@@ -38,7 +38,7 @@
     
     
       
-        <title>Getting Started - larq</title>
+        <title>Getting Started - Larq</title>
       
     
     
@@ -113,7 +113,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="." title="larq" class="md-header-nav__button md-logo">
+        <a href="." title="Larq" class="md-header-nav__button md-logo">
           
             <i class="md-icon">developer_board</i>
           
@@ -126,7 +126,7 @@
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
             <span class="md-header-nav__topic">
-              larq
+              Larq
             </span>
             <span class="md-header-nav__topic">
               Getting Started
@@ -170,7 +170,7 @@
 
   
 
-<a href="https://github.com/plumerai/larq/" title="Go to repository" class="md-source" data-md-source="github">
+<a href="https://github.com/plumerai/larq" title="Go to repository" class="md-source" data-md-source="github">
   
     <div class="md-source__icon">
       <svg viewBox="0 0 24 24" width="24" height="24">
@@ -254,12 +254,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="." title="larq" class="md-nav__button md-logo">
+    <a href="." title="Larq" class="md-nav__button md-logo">
       
         <i class="md-icon">developer_board</i>
       
     </a>
-    larq
+    Larq
   </label>
   
     <div class="md-nav__source">
@@ -268,7 +268,7 @@
 
   
 
-<a href="https://github.com/plumerai/larq/" title="Go to repository" class="md-source" data-md-source="github">
+<a href="https://github.com/plumerai/larq" title="Go to repository" class="md-source" data-md-source="github">
   
     <div class="md-source__icon">
       <svg viewBox="0 0 24 24" width="24" height="24">
@@ -649,11 +649,10 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/plumerai/larq/edit/master/docs/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
-                
                 
                 <h1 id="larq">Larq<a class="headerlink" href="#larq" title="Permanent link">&para;</a></h1>
-<p><a href="https://plumerai.visualstudio.com/larq/_build/latest?definitionId=5&amp;branchName=master"><img alt="Azure DevOps builds" src="https://img.shields.io/azure-devops/build/plumerai/larq/5.svg?logo=azure-devops" /></a> <a href="https://plumerai.visualstudio.com/larq/_build/latest?definitionId=5&amp;branchName=master"><img alt="Azure DevOps coverage" src="https://img.shields.io/azure-devops/coverage/plumerai/larq/5.svg?logo=azure-devops" /></a> <a href="https://github.com/ambv/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a> <a href="https://spectrum.chat/larq"><img alt="Join the community on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" /></a></p>
+<p><a href="https://plumerai.visualstudio.com/larq/_build/latest?definitionId=5&amp;branchName=master"><img alt="Azure DevOps builds" src="https://img.shields.io/azure-devops/build/plumerai/larq/5.svg?logo=azure-devops" /></a> <a href="https://plumerai.visualstudio.com/larq/_build/latest?definitionId=5&amp;branchName=master"><img alt="Azure DevOps coverage" src="https://img.shields.io/azure-devops/coverage/plumerai/larq/5.svg?logo=azure-devops" /></a> <a href="https://pypi.org/project/larq/"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/larq.svg" /></a> <a href="https://pypi.org/project/larq/"><img alt="PyPI" src="https://img.shields.io/pypi/v/larq.svg" /></a> <a href="https://github.com/plumerai/larq/blob/master/LICENSE"><img alt="PyPI - License" src="https://img.shields.io/pypi/l/larq.svg" /></a> <a href="https://github.com/ambv/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a></p>
+<p><a href="https://mybinder.org/v2/gh/plumerai/larq/master?filepath=examples"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> <a href="https://spectrum.chat/larq"><img alt="Join the community on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" /></a></p>
 <p>Larq is an open source machine learning library for training Quantized Neural Networks (QNNs) with extremely low precision weights and activations (e.g. 1-bit). Existing Deep Neural Networks tend to be large, slow and power-hungry, prohibiting many applications in resource-constrained environments. Larq is designed to provide an easy to use, composable way to train QNNs (e.g. Binarized Neural Networks) based on the <code>tf.keras</code> interface.</p>
 <h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
 <p>To build a QNN Larq introduces the concept of <em>Quantized Layers</em> and <em>Quantizers</em>. A <em>Quantizer</em> defines the way of transforming a full precision input to a quantized output and the pseudo-gradient method used for the backwards pass. Each <em>Quantized Layer</em> requires a <code>input_quantizer</code> and <code>kernel_quantizer</code> that describes the way of quantizing the activation of the previous layer and the weights respectively. If both <code>input_quantizer</code> and <code>kernel_quantizer</code> are <code>None</code> the layer is equivalent to a full precision layer.</p>
@@ -668,10 +667,10 @@
 
 <p>This layer can be used inside a <a href="https://www.tensorflow.org/alpha/guide/keras/overview#sequential_model">keras model</a> or with a <a href="https://www.tensorflow.org/alpha/guide/keras/overview#model_subclassing">custom training loop</a>.</p>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
-<p>Checkout our <a href="https://github.com/plumerai/larq/tree/master/examples">examples</a> on how to train a Binarized Neural Network in just a few lines of code:</p>
+<p>Checkout our <a href="https://plumerai.github.io/larq/examples/mnist/">examples</a> on how to train a Binarized Neural Network in just a few lines of code:</p>
 <ul>
-<li><a href="https://github.com/plumerai/larq/blob/master/examples/mnist.ipynb">Introduction to Larq</a></li>
-<li><a href="https://github.com/plumerai/larq/blob/master/examples/binarynet_cifar10.ipynb">Binarynet on CIFAR10</a></li>
+<li><a href="https://plumerai.github.io/larq/examples/mnist/">Introduction to Larq</a></li>
+<li><a href="https://plumerai.github.io/larq/examples/binarynet_cifar10/">Binarynet on CIFAR10</a></li>
 </ul>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <p>Before installing Larq, please install:</p>
