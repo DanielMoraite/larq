@@ -1,0 +1,1717 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="An Open Source Machine Learning Framework for Training Extreme Quantized Neural Networks">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.1.1">
+    
+    
+      
+        <title>Quantized Layers - larq</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.3020aac5.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#2196f3">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.01ccdecf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#larqlayers" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="larq" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">developer_board</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              larq
+            </span>
+            <span class="md-header-nav__topic">
+              Quantized Layers
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/plumerai/larq/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href=".." title="Home" class="md-tabs__link">
+          Home
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../examples/mnist/" title="Examples" class="md-tabs__link">
+          Examples
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="./" title="Documenation" class="md-tabs__link md-tabs__link--active">
+          Documenation
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="larq" class="md-nav__button md-logo">
+      
+        <i class="md-icon">developer_board</i>
+      
+    </a>
+    larq
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/plumerai/larq/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Home
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Home
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2" type="checkbox" id="nav-1-2">
+    
+    <label class="md-nav__link" for="nav-1-2">
+      Library Development
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-2">
+        Library Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dev/contributing/" title="Contributing Guide" class="md-nav__link">
+      Contributing Guide
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dev/code_of_conduct/" title="Code of Conduct" class="md-nav__link">
+      Code of Conduct
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Examples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/mnist/" title="Introduction to Larq" class="md-nav__link">
+      Introduction to Larq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/binarynet_cifar10/" title="Binarynet on CIFAR10" class="md-nav__link">
+      Binarynet on CIFAR10
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Documenation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Documenation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Quantized Layers
+      </label>
+    
+    <a href="./" title="Quantized Layers" class="md-nav__link md-nav__link--active">
+      Quantized Layers
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quantdense" title="QuantDense" class="md-nav__link">
+    QuantDense
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantconv1d" title="QuantConv1D" class="md-nav__link">
+    QuantConv1D
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantconv2d" title="QuantConv2D" class="md-nav__link">
+    QuantConv2D
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantconv3d" title="QuantConv3D" class="md-nav__link">
+    QuantConv3D
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantseparableconv1d" title="QuantSeparableConv1D" class="md-nav__link">
+    QuantSeparableConv1D
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantseparableconv2d" title="QuantSeparableConv2D" class="md-nav__link">
+    QuantSeparableConv2D
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantconv2dtranspose" title="QuantConv2DTranspose" class="md-nav__link">
+    QuantConv2DTranspose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantconv3dtranspose" title="QuantConv3DTranspose" class="md-nav__link">
+    QuantConv3DTranspose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantlocallyconnected1d" title="QuantLocallyConnected1D" class="md-nav__link">
+    QuantLocallyConnected1D
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantlocallyconnected2d" title="QuantLocallyConnected2D" class="md-nav__link">
+    QuantLocallyConnected2D
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../quantizers/" title="Quantizers" class="md-nav__link">
+      Quantizers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../activations/" title="Activations" class="md-nav__link">
+      Activations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../constraints/" title="Constraints" class="md-nav__link">
+      Constraints
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../callbacks/" title="Callbacks" class="md-nav__link">
+      Callbacks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../optimizers/" title="Optimizers" class="md-nav__link">
+      Optimizers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../models/" title="Models" class="md-nav__link">
+      Models
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quantdense" title="QuantDense" class="md-nav__link">
+    QuantDense
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantconv1d" title="QuantConv1D" class="md-nav__link">
+    QuantConv1D
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantconv2d" title="QuantConv2D" class="md-nav__link">
+    QuantConv2D
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantconv3d" title="QuantConv3D" class="md-nav__link">
+    QuantConv3D
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantseparableconv1d" title="QuantSeparableConv1D" class="md-nav__link">
+    QuantSeparableConv1D
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantseparableconv2d" title="QuantSeparableConv2D" class="md-nav__link">
+    QuantSeparableConv2D
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantconv2dtranspose" title="QuantConv2DTranspose" class="md-nav__link">
+    QuantConv2DTranspose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantconv3dtranspose" title="QuantConv3DTranspose" class="md-nav__link">
+    QuantConv3DTranspose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantlocallyconnected1d" title="QuantLocallyConnected1D" class="md-nav__link">
+    QuantLocallyConnected1D
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantlocallyconnected2d" title="QuantLocallyConnected2D" class="md-nav__link">
+    QuantLocallyConnected2D
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/plumerai/larq/edit/master/docs/layers.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="larqlayers">larq.layers<a class="headerlink" href="#larqlayers" title="Permanent link">&para;</a></h1>
+<p>Each Quantized Layer requires a <code>input_quantizer</code> and <code>kernel_quantizer</code> that
+describes the way of quantizing the activation of the previous layer and the weights
+respectively.</p>
+<p>If both <code>input_quantizer</code> and <code>kernel_quantizer</code> are <code>None</code> the layer
+is equivalent to a full precision layer.</p>
+<h2 id="quantdense">QuantDense<a class="headerlink" href="#quantdense" title="Permanent link">&para;</a></h2>
+<p><div class="codehilite"><pre><span></span><span class="n">QuantDense</span><span class="p">(</span>
+    <span class="n">units</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">input_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+Just your regular densely-connected quantized NN layer.</p>
+<p><code>QuantDense</code> implements the operation:
+<code>output = activation(dot(input_quantizer(input), kernel_quantizer(kernel)) + bias)</code>,
+where <code>activation</code> is the element-wise activation function passed as the
+<code>activation</code> argument, <code>kernel</code> is a weights matrix created by the layer, and <code>bias</code>
+is a bias vector created by the layer (only applicable if <code>use_bias</code> is <code>True</code>).
+<code>input_quantizer</code> and <code>kernel_quantizer</code> are the element-wise quantization
+functions to use. If both quantization functions are <code>None</code> this layer is
+equivalent to <code>Dense</code>.</p>
+<div class="admonition note">
+<p>If the input to the layer has a rank greater than 2, then it is flattened
+prior to the initial dot product with <code>kernel</code>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="codehilite"><pre><span></span><span class="c1"># as first layer in a sequential model:</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="n">QuantDense</span><span class="p">(</span>
+        <span class="mi">32</span><span class="p">,</span>
+        <span class="n">input_quantizer</span><span class="o">=</span><span class="s2">&quot;ste_sign&quot;</span><span class="p">,</span>
+        <span class="n">kernel_quantizer</span><span class="o">=</span><span class="s2">&quot;ste_sign&quot;</span><span class="p">,</span>
+        <span class="n">kernel_constraint</span><span class="o">=</span><span class="s2">&quot;weight_clip&quot;</span><span class="p">,</span>
+        <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,),</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="c1"># now the model will take as input arrays of shape (*, 16)</span>
+<span class="c1"># and output arrays of shape (*, 32)</span>
+
+<span class="c1"># after the first layer, you don&#39;t need to specify</span>
+<span class="c1"># the size of the input anymore:</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="n">QuantDense</span><span class="p">(</span>
+        <span class="mi">32</span><span class="p">,</span>
+        <span class="n">input_quantizer</span><span class="o">=</span><span class="s2">&quot;ste_sign&quot;</span><span class="p">,</span>
+        <span class="n">kernel_quantizer</span><span class="o">=</span><span class="s2">&quot;ste_sign&quot;</span><span class="p">,</span>
+        <span class="n">kernel_constraint</span><span class="o">=</span><span class="s2">&quot;weight_clip&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+</div>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>units</code>: Positive integer, dimensionality of the output space.</li>
+<li><code>activation</code>: Activation function to use. If you don't specify anything,
+    no activation is applied (<code>a(x) = x</code>).</li>
+<li><code>use_bias</code>: Boolean, whether the layer uses a bias vector.</li>
+<li><code>input_quantizer</code>: Quantization function applied to the input of the layer.</li>
+<li><code>kernel_quantizer</code>: Quantization function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>kernel_initializer</code>: Initializer for the <code>kernel</code> weights matrix.</li>
+<li><code>bias_initializer</code>: Initializer for the bias vector.</li>
+<li><code>kernel_regularizer</code>: Regularizer function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>bias_regularizer</code>: Regularizer function applied to the bias vector.</li>
+<li><code>activity_regularizer</code>: Regularizer function applied to
+    the output of the layer (its "activation").</li>
+<li><code>kernel_constraint</code>: Constraint function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>bias_constraint</code>: Constraint function applied to the bias vector.</li>
+</ul>
+<p><strong>Input shape</strong></p>
+<p>N-D tensor with shape: <code>(batch_size, ..., input_dim)</code>. The most common situation
+would be a 2D input with shape <code>(batch_size, input_dim)</code>.</p>
+<p><strong>Output shape</strong></p>
+<p>N-D tensor with shape: <code>(batch_size, ..., units)</code>. For instance, for a 2D input with
+shape <code>(batch_size, input_dim)</code>, the output would have shape <code>(batch_size, units)</code>.</p>
+<h2 id="quantconv1d">QuantConv1D<a class="headerlink" href="#quantconv1d" title="Permanent link">&para;</a></h2>
+<p><div class="codehilite"><pre><span></span><span class="n">QuantConv1D</span><span class="p">(</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;channels_last&#39;</span><span class="p">,</span>
+    <span class="n">dilation_rate</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">input_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+1D quantized convolution layer (e.g. temporal convolution).</p>
+<p>This layer creates a convolution kernel that is convolved with the layer input
+over a single spatial (or temporal) dimension to produce a tensor of outputs.
+<code>input_quantizer</code> and <code>kernel_quantizer</code> are the element-wise quantization
+functions to use. If both quantization functions are <code>None</code> this layer is
+equivalent to <code>Conv1D</code>.
+If <code>use_bias</code> is True, a bias vector is created and added to the outputs.
+Finally, if <code>activation</code> is not <code>None</code>, it is applied to the outputs as well.</p>
+<p>When using this layer as the first layer in a model, provide an <code>input_shape</code>
+argument (tuple of integers or <code>None</code>, e.g. <code>(10, 128)</code> for sequences of
+10 vectors of 128-dimensional vectors, or <code>(None, 128)</code> for variable-length
+sequences of 128-dimensional vectors.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filters</code>: Integer, the dimensionality of the output space
+    (i.e. the number of output filters in the convolution).</li>
+<li><code>kernel_size</code>: An integer or tuple/list of a single integer,
+    specifying the length of the 1D convolution window.</li>
+<li><code>strides</code>: An integer or tuple/list of a single integer, specifying the stride
+    length of the convolution. Specifying any stride value != 1 is incompatible
+    with specifying any <code>dilation_rate</code> value != 1.</li>
+<li><code>padding</code>: One of <code>"valid"</code>, <code>"causal"</code> or <code>"same"</code> (case-insensitive). <code>"causal"</code>
+    results in causal (dilated) convolutions, e.g. output[t] does not depend on</li>
+<li><code>input[t+1</code>:]. Useful when modeling temporal data where the model should not</li>
+<li><code>violate the temporal order. See [WaveNet</code>: A Generative Model for Raw Audio,</li>
+<li><code>section 2.1](https</code>://arxiv.org/abs/1609.03499).</li>
+<li><code>data_format</code>: A string, one of <code>channels_last</code> (default) or <code>channels_first</code>.</li>
+<li><code>dilation_rate</code>: an integer or tuple/list of a single integer, specifying the dilation
+    rate to use for dilated convolution. Currently, specifying any <code>dilation_rate</code>
+    value != 1 is incompatible with specifying any <code>strides</code> value != 1.</li>
+<li><code>activation</code>: Activation function to use. If you don't specify anything, no activation
+    is applied (<code>a(x) = x</code>).</li>
+<li><code>use_bias</code>: Boolean, whether the layer uses a bias vector.</li>
+<li><code>input_quantizer</code>: Quantization function applied to the input of the layer.</li>
+<li><code>kernel_quantizer</code>: Quantization function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>kernel_initializer</code>: Initializer for the <code>kernel</code> weights matrix.</li>
+<li><code>bias_initializer</code>: Initializer for the bias vector.</li>
+<li><code>kernel_regularizer</code>: Regularizer function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>bias_regularizer</code>: Regularizer function applied to the bias vector.</li>
+<li><code>activity_regularizer</code>: Regularizer function applied to
+    the output of the layer (its "activation").</li>
+<li><code>kernel_constraint</code>: Constraint function applied to the kernel matrix.</li>
+<li><code>bias_constraint</code>: Constraint function applied to the bias vector.</li>
+</ul>
+<p><strong>Input shape</strong></p>
+<p>3D tensor with shape: <code>(batch_size, steps, input_dim)</code></p>
+<p><strong>Output shape</strong></p>
+<p>3D tensor with shape: <code>(batch_size, new_steps, filters)</code>.
+<code>steps</code> value might have changed due to padding or strides.</p>
+<h2 id="quantconv2d">QuantConv2D<a class="headerlink" href="#quantconv2d" title="Permanent link">&para;</a></h2>
+<p><div class="codehilite"><pre><span></span><span class="n">QuantConv2D</span><span class="p">(</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">dilation_rate</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">input_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+2D quantized convolution layer (e.g. spatial convolution over images).</p>
+<p>This layer creates a convolution kernel that is convolved
+with the layer input to produce a tensor of outputs.
+<code>input_quantizer</code> and <code>kernel_quantizer</code> are the element-wise quantization
+functions to use. If both quantization functions are <code>None</code> this layer is
+equivalent to <code>Conv2D</code>. If <code>use_bias</code> is True, a bias vector is created
+and added to the outputs. Finally, if <code>activation</code> is not <code>None</code>,
+it is applied to the outputs as well.</p>
+<p>When using this layer as the first layer in a model, provide the keyword argument
+<code>input_shape</code> (tuple of integers, does not include the sample axis),
+e.g. <code>input_shape=(128, 128, 3)</code> for 128x128 RGB pictures in
+<code>data_format="channels_last"</code>.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filters</code>: Integer, the dimensionality of the output space
+    (i.e. the number of output filters in the convolution).</li>
+<li><code>kernel_size</code>: An integer or tuple/list of 2 integers, specifying the
+    height and width of the 2D convolution window. Can be a single integer
+    to specify the same value for all spatial dimensions.</li>
+<li><code>strides</code>: An integer or tuple/list of 2 integers, specifying the strides of
+    the convolution along the height and width. Can be a single integer to
+    specify the same value for all spatial dimensions. Specifying any stride
+    value != 1 is incompatible with specifying any <code>dilation_rate</code> value != 1.</li>
+<li><code>padding</code>: one of <code>"valid"</code> or <code>"same"</code> (case-insensitive).</li>
+<li><code>data_format</code>: A string, one of <code>channels_last</code> (default) or <code>channels_first</code>.
+    The ordering of the dimensions in the inputs. <code>channels_last</code> corresponds to
+    inputs with shape <code>(batch, height, width, channels)</code> while <code>channels_first</code>
+    corresponds to inputs with shape <code>(batch, channels, height, width)</code>. It defaults
+    to the <code>image_data_format</code> value found in your Keras config file at
+    <code>~/.keras/keras.json</code>. If you never set it, then it will be "channels_last".</li>
+<li><code>dilation_rate</code>: an integer or tuple/list of 2 integers, specifying the dilation rate
+    to use for dilated convolution. Can be a single integer to specify the same
+    value for all spatial dimensions. Currently, specifying any <code>dilation_rate</code>
+    value != 1 is incompatible with specifying any stride value != 1.</li>
+<li><code>activation</code>: Activation function to use. If you don't specify anything,
+    no activation is applied (<code>a(x) = x</code>).</li>
+<li><code>use_bias</code>: Boolean, whether the layer uses a bias vector.</li>
+<li><code>input_quantizer</code>: Quantization function applied to the input of the layer.</li>
+<li><code>kernel_quantizer</code>: Quantization function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>kernel_initializer</code>: Initializer for the <code>kernel</code> weights matrix.</li>
+<li><code>bias_initializer</code>: Initializer for the bias vector.</li>
+<li><code>kernel_regularizer</code>: Regularizer function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>bias_regularizer</code>: Regularizer function applied to the bias vector.</li>
+<li><code>activity_regularizer</code>: Regularizer function applied to
+    the output of the layer (its "activation").</li>
+<li><code>kernel_constraint</code>: Constraint function applied to the kernel matrix.</li>
+<li><code>bias_constraint</code>: Constraint function applied to the bias vector.</li>
+</ul>
+<p><strong>Input shape</strong></p>
+<p>4D tensor with shape:
+<code>(samples, channels, rows, cols)</code> if data_format='channels_first'
+or 4D tensor with shape:
+<code>(samples, rows, cols, channels)</code> if data_format='channels_last'.</p>
+<p><strong>Output shape</strong></p>
+<p>4D tensor with shape:
+<code>(samples, filters, new_rows, new_cols)</code> if data_format='channels_first'
+or 4D tensor with shape:
+<code>(samples, new_rows, new_cols, filters)</code> if data_format='channels_last'.
+<code>rows</code> and <code>cols</code> values might have changed due to padding.</p>
+<h2 id="quantconv3d">QuantConv3D<a class="headerlink" href="#quantconv3d" title="Permanent link">&para;</a></h2>
+<p><div class="codehilite"><pre><span></span><span class="n">QuantConv3D</span><span class="p">(</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">dilation_rate</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">input_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+3D convolution layer (e.g. spatial convolution over volumes).</p>
+<p>This layer creates a convolution kernel that is convolved
+with the layer input to produce a tensor of
+outputs. <code>input_quantizer</code> and <code>kernel_quantizer</code> are the element-wise quantization
+functions to use. If both quantization functions are <code>None</code> this layer is
+equivalent to <code>Conv3D</code>. If <code>use_bias</code> is True, a bias vector is created and
+added to the outputs. Finally, if <code>activation</code> is not <code>None</code>,
+it is applied to the outputs as well.</p>
+<p>When using this layer as the first layer in a model, provide the keyword argument
+<code>input_shape</code> (tuple of integers, does not include the sample axis),
+e.g. <code>input_shape=(128, 128, 128, 1)</code> for 128x128x128 volumes
+with a single channel, in <code>data_format="channels_last"</code>.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filters</code>: Integer, the dimensionality of the output space
+    (i.e. the number of output filters in the convolution).</li>
+<li><code>kernel_size</code>: An integer or tuple/list of 3 integers, specifying the
+    depth, height and width of the 3D convolution window. Can be a single
+    integer to specify the same value for all spatial dimensions.</li>
+<li><code>strides</code>: An integer or tuple/list of 3 integers, specifying the strides of the
+    convolution along each spatial dimension. Can be a single integer to specify the
+    same value for all spatial dimensions. Specifying any stride value != 1 is
+    incompatible with specifying any <code>dilation_rate</code> value != 1.</li>
+<li><code>padding</code>: one of <code>"valid"</code> or <code>"same"</code> (case-insensitive).</li>
+<li><code>data_format</code>: A string, one of <code>channels_last</code> (default) or <code>channels_first</code>.
+    The ordering of the dimensions in the inputs. <code>channels_last</code> corresponds to
+    inputs with shape <code>(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)</code>
+    while <code>channels_first</code> corresponds to inputs with shape
+    <code>(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)</code>. It defaults to
+    the <code>image_data_format</code> value found in your Keras config file at
+    <code>~/.keras/keras.json</code>. If you never set it, then it will be "channels_last".</li>
+<li><code>dilation_rate</code>: an integer or tuple/list of 3 integers, specifying the dilation rate
+    to use for dilated convolution. Can be a single integer to specify the same
+    value for all spatial dimensions. Currently, specifying any <code>dilation_rate</code>
+    value != 1 is incompatible with specifying any stride value != 1.</li>
+<li><code>activation</code>: Activation function to use. If you don't specify anything,
+    no activation is applied (<code>a(x) = x</code>).</li>
+<li><code>use_bias</code>: Boolean, whether the layer uses a bias vector.</li>
+<li><code>input_quantizer</code>: Quantization function applied to the input of the layer.</li>
+<li><code>kernel_quantizer</code>: Quantization function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>kernel_initializer</code>: Initializer for the <code>kernel</code> weights matrix.</li>
+<li><code>bias_initializer</code>: Initializer for the bias vector.</li>
+<li><code>kernel_regularizer</code>: Regularizer function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>bias_regularizer</code>: Regularizer function applied to the bias vector.</li>
+<li><code>activity_regularizer</code>: Regularizer function applied to
+    the output of the layer (its "activation").</li>
+<li><code>kernel_constraint</code>: Constraint function applied to the kernel matrix.</li>
+<li><code>bias_constraint</code>: Constraint function applied to the bias vector.</li>
+</ul>
+<p><strong>Input shape</strong></p>
+<p>5D tensor with shape:
+<code>(samples, channels, conv_dim1, conv_dim2, conv_dim3)</code> if
+    data_format='channels_first'
+or 5D tensor with shape:
+<code>(samples, conv_dim1, conv_dim2, conv_dim3, channels)</code> if
+    data_format='channels_last'.</p>
+<p><strong>Output shape</strong></p>
+<p>5D tensor with shape:
+<code>(samples, filters, new_conv_dim1, new_conv_dim2, new_conv_dim3)</code> if
+    data_format='channels_first'
+or 5D tensor with shape:
+<code>(samples, new_conv_dim1, new_conv_dim2, new_conv_dim3, filters)</code> if
+    data_format='channels_last'.
+<code>new_conv_dim1</code>, <code>new_conv_dim2</code> and <code>new_conv_dim3</code> values might have
+    changed due to padding.</p>
+<h2 id="quantseparableconv1d">QuantSeparableConv1D<a class="headerlink" href="#quantseparableconv1d" title="Permanent link">&para;</a></h2>
+<p><div class="codehilite"><pre><span></span><span class="n">QuantSeparableConv1D</span><span class="p">(</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">dilation_rate</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">depth_multiplier</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">input_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">depthwise_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">pointwise_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">depthwise_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">pointwise_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">depthwise_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">pointwise_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">depthwise_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">pointwise_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+Depthwise separable 1D quantized convolution.</p>
+<p>This layer performs a depthwise convolution that acts separately on channels,
+followed by a pointwise convolution that mixes channels.
+<code>input_quantizer</code>, <code>depthwise_quantizer</code> and <code>pointwise_quantizer</code> are the
+element-wise quantization functions to use. If all quantization functions are <code>None</code>
+this layer is equivalent to <code>SeparableConv1D</code>. If <code>use_bias</code> is True and
+a bias initializer is provided, it adds a bias vector to the output.
+It then optionally applies an activation function to produce the final output.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filters</code>: Integer, the dimensionality of the output space (i.e. the number
+    of filters in the convolution).</li>
+<li><code>kernel_size</code>: A single integer specifying the spatial dimensions of the filters.</li>
+<li><code>strides</code>: A single integer specifying the strides of the convolution.
+    Specifying any <code>stride</code> value != 1 is incompatible with specifying
+    any <code>dilation_rate</code> value != 1.</li>
+<li><code>padding</code>: One of <code>"valid"</code>, <code>"same"</code>, or <code>"causal"</code> (case-insensitive).</li>
+<li><code>data_format</code>: A string, one of <code>channels_last</code> (default) or <code>channels_first</code>.
+    The ordering of the dimensions in the inputs. <code>channels_last</code> corresponds
+    to inputs with shape <code>(batch, length, channels)</code> while <code>channels_first</code>
+    corresponds to inputs with shape <code>(batch, channels, length)</code>.</li>
+<li><code>dilation_rate</code>: A single integer, specifying the dilation rate to use for dilated
+    convolution. Currently, specifying any <code>dilation_rate</code> value != 1 is
+    incompatible with specifying any stride value != 1.</li>
+<li><code>depth_multiplier</code>: The number of depthwise convolution output channels for
+    each input channel. The total number of depthwise convolution output
+    channels will be equal to <code>num_filters_in * depth_multiplier</code>.</li>
+<li><code>activation</code>: Activation function. Set it to None to maintain a linear activation.</li>
+<li><code>use_bias</code>: Boolean, whether the layer uses a bias.</li>
+<li><code>input_quantizer</code>: Quantization function applied to the input of the layer.</li>
+<li><code>depthwise_quantizer</code>: Quantization function applied to the depthwise kernel.</li>
+<li><code>pointwise_quantizer</code>: Quantization function applied to the pointwise kernel.</li>
+<li><code>depthwise_initializer</code>: An initializer for the depthwise convolution kernel.</li>
+<li><code>pointwise_initializer</code>: An initializer for the pointwise convolution kernel.</li>
+<li><code>bias_initializer</code>: An initializer for the bias vector. If None, the default
+    initializer will be used.</li>
+<li><code>depthwise_regularizer</code>: Optional regularizer for the depthwise convolution kernel.</li>
+<li><code>pointwise_regularizer</code>: Optional regularizer for the pointwise convolution kernel.</li>
+<li><code>bias_regularizer</code>: Optional regularizer for the bias vector.</li>
+<li><code>activity_regularizer</code>: Optional regularizer function for the output.</li>
+<li><code>depthwise_constraint</code>: Optional projection function to be applied to the
+    depthwise kernel after being updated by an <code>Optimizer</code>
+    (e.g. used for norm constraints or value constraints for layer weights).
+    The function must take as input the unprojected variable and must return
+    the projected variable (which must have the same shape). Constraints are
+    not safe to use when doing asynchronous distributed training.</li>
+<li><code>pointwise_constraint</code>: Optional projection function to be applied to the
+    pointwise kernel after being updated by an <code>Optimizer</code>.</li>
+<li><code>bias_constraint</code>: Optional projection function to be applied to the
+    bias after being updated by an <code>Optimizer</code>.</li>
+<li><code>trainable</code>: Boolean, if <code>True</code> the weights of this layer will be marked as
+    trainable (and listed in <code>layer.trainable_weights</code>).</li>
+<li><code>name</code>: A string, the name of the layer.</li>
+</ul>
+<h2 id="quantseparableconv2d">QuantSeparableConv2D<a class="headerlink" href="#quantseparableconv2d" title="Permanent link">&para;</a></h2>
+<p><div class="codehilite"><pre><span></span><span class="n">QuantSeparableConv2D</span><span class="p">(</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">dilation_rate</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">depth_multiplier</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">input_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">depthwise_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">pointwise_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">depthwise_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">pointwise_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">depthwise_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">pointwise_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">depthwise_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">pointwise_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+Depthwise separable 2D convolution.</p>
+<p>Separable convolutions consist in first performing a depthwise spatial convolution
+(which acts on each input channel separately) followed by a pointwise convolution
+which mixes together the resulting output channels. The <code>depth_multiplier</code> argument
+controls how many output channels are generated per input channel
+in the depthwise step.
+<code>input_quantizer</code>, <code>depthwise_quantizer</code> and <code>pointwise_quantizer</code> are the
+element-wise quantization functions to use. If all quantization functions are <code>None</code>
+this layer is equivalent to <code>SeparableConv1D</code>. If <code>use_bias</code> is True and
+a bias initializer is provided, it adds a bias vector to the output.
+It then optionally applies an activation function to produce the final output.</p>
+<p>Intuitively, separable convolutions can be understood as a way to factorize a
+convolution kernel into two smaller kernels,
+or as an extreme version of an Inception block.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filters</code>: Integer, the dimensionality of the output space
+    (i.e. the number of output filters in the convolution).</li>
+<li><code>kernel_size</code>: An integer or tuple/list of 2 integers, specifying the height and
+    width of the 2D convolution window. Can be a single integer to specify the
+    same value for all spatial dimensions.</li>
+<li><code>strides</code>: An integer or tuple/list of 2 integers, specifying the strides of the
+    convolution along the height and width. Can be a single integer to specify
+    the same value for all spatial dimensions. Specifying any stride value != 1
+    is incompatible with specifying any <code>dilation_rate</code> value != 1.</li>
+<li><code>padding</code>: one of <code>"valid"</code> or <code>"same"</code> (case-insensitive).</li>
+<li><code>data_format</code>: A string, one of <code>channels_last</code> (default) or <code>channels_first</code>.
+    The ordering of the dimensions in the inputs. <code>channels_last</code> corresponds to
+    inputs with shape <code>(batch, height, width, channels)</code> while <code>channels_first</code>
+    corresponds to inputs with shape <code>(batch, channels, height, width)</code>. It
+    defaults to the <code>image_data_format</code> value found in your Keras config file at
+    <code>~/.keras/keras.json</code>. If you never set it, then it will be "channels_last".</li>
+<li><code>dilation_rate</code>: An integer or tuple/list of 2 integers, specifying the dilation rate
+    to use for dilated convolution. Currently, specifying any <code>dilation_rate</code>
+    value != 1 is incompatible with specifying any <code>strides</code> value != 1.</li>
+<li><code>depth_multiplier</code>: The number of depthwise convolution output channels for each
+    input channel. The total number of depthwise convolution output channels
+    will be equal to <code>filters_in * depth_multiplier</code>.</li>
+<li><code>activation</code>: Activation function to use. If you don't specify anything,
+    no activation is applied (<code>a(x) = x</code>).</li>
+<li><code>use_bias</code>: Boolean, whether the layer uses a bias vector.</li>
+<li><code>input_quantizer</code>: Quantization function applied to the input of the layer.</li>
+<li><code>depthwise_quantizer</code>: Quantization function applied to the depthwise kernel matrix.</li>
+<li><code>pointwise_quantizer</code>: Quantization function applied to the pointwise kernel matrix.</li>
+<li><code>depthwise_initializer</code>: Initializer for the depthwise kernel matrix.</li>
+<li><code>pointwise_initializer</code>: Initializer for the pointwise kernel matrix.</li>
+<li><code>bias_initializer</code>: Initializer for the bias vector.</li>
+<li><code>depthwise_regularizer</code>: Regularizer function applied to the depthwise kernel matrix.</li>
+<li><code>pointwise_regularizer</code>: Regularizer function applied to the pointwise kernel matrix.</li>
+<li><code>bias_regularizer</code>: Regularizer function applied to the bias vector.</li>
+<li><code>activity_regularizer</code>: Regularizer function applied to
+    the output of the layer (its "activation").</li>
+<li><code>depthwise_constraint</code>: Constraint function applied to the depthwise kernel matrix.</li>
+<li><code>pointwise_constraint</code>: Constraint function applied to the pointwise kernel matrix.</li>
+<li><code>bias_constraint</code>: Constraint function applied to the bias vector.</li>
+</ul>
+<p><strong>Input shape</strong></p>
+<p>4D tensor with shape:
+<code>(batch, channels, rows, cols)</code> if data_format='channels_first'
+or 4D tensor with shape:
+<code>(batch, rows, cols, channels)</code> if data_format='channels_last'.</p>
+<p><strong>Output shape</strong></p>
+<p>4D tensor with shape:
+<code>(batch, filters, new_rows, new_cols)</code> if data_format='channels_first'
+or 4D tensor with shape:
+<code>(batch, new_rows, new_cols, filters)</code> if data_format='channels_last'.
+<code>rows</code> and <code>cols</code> values might have changed due to padding.</p>
+<h2 id="quantconv2dtranspose">QuantConv2DTranspose<a class="headerlink" href="#quantconv2dtranspose" title="Permanent link">&para;</a></h2>
+<p><div class="codehilite"><pre><span></span><span class="n">QuantConv2DTranspose</span><span class="p">(</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">output_padding</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">dilation_rate</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">input_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+Transposed quantized convolution layer (sometimes called Deconvolution).</p>
+<p>The need for transposed convolutions generally arises from the desire to use a
+transformation going in the opposite direction of a normal convolution, i.e.,
+from something that has the shape of the output of some convolution to something
+that has the shape of its input while maintaining a connectivity pattern
+that is compatible with said convolution. <code>input_quantizer</code> and <code>kernel_quantizer</code>
+are the element-wise quantization functions to use. If both quantization functions
+are <code>None</code> this layer is equivalent to <code>Conv2DTranspose</code>.</p>
+<p>When using this layer as the first layer in a model, provide the keyword argument
+<code>input_shape</code> (tuple of integers, does not include the sample axis), e.g.
+<code>input_shape=(128, 128, 3)</code> for 128x128 RGB pictures in
+<code>data_format="channels_last"</code>.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filters</code>: Integer, the dimensionality of the output space
+    (i.e. the number of output filters in the convolution).</li>
+<li><code>kernel_size</code>: An integer or tuple/list of 2 integers, specifying the
+    height and width of the 2D convolution window. Can be a single integer
+    to specify the same value for all spatial dimensions.</li>
+<li><code>strides</code>: An integer or tuple/list of 2 integers, specifying the strides of
+    the convolution along the height and width. Can be a single integer to
+    specify the same value for all spatial dimensions. Specifying any stride
+    value != 1 is incompatible with specifying any <code>dilation_rate</code> value != 1.</li>
+<li><code>padding</code>: one of <code>"valid"</code> or <code>"same"</code> (case-insensitive).</li>
+<li><code>output_padding</code>: An integer or tuple/list of 2 integers, specifying the amount
+    of padding along the height and width of the output tensor. Can be a single
+    integer to specify the same value for all spatial dimensions. The amount of
+    output padding along a given dimension must be lower than the stride along
+    that same dimension.
+    If set to <code>None</code> (default), the output shape is inferred.</li>
+<li><code>data_format</code>: A string, one of <code>channels_last</code> (default) or <code>channels_first</code>. The
+    ordering of the dimensions in the inputs. <code>channels_last</code> corresponds to inputs
+    with shape <code>(batch, height, width, channels)</code> while <code>channels_first</code> corresponds
+    to inputs with shape <code>(batch, channels, height, width)</code>. It defaults to the
+    <code>image_data_format</code> value found in your Keras config file at
+    <code>~/.keras/keras.json</code>. If you never set it, then it will be "channels_last".</li>
+<li><code>dilation_rate</code>: an integer or tuple/list of 2 integers, specifying the dilation rate
+    to use for dilated convolution. Can be a single integer to specify the same
+    value for all spatial dimensions. Currently, specifying any <code>dilation_rate</code>
+    value != 1 is incompatible with specifying any stride value != 1.</li>
+<li><code>activation</code>: Activation function to use. If you don't specify anything,
+    no activation is applied (<code>a(x) = x</code>).</li>
+<li><code>use_bias</code>: Boolean, whether the layer uses a bias vector.</li>
+<li><code>input_quantizer</code>: Quantization function applied to the input of the layer.</li>
+<li><code>kernel_quantizer</code>: Quantization function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>kernel_initializer</code>: Initializer for the <code>kernel</code> weights matrix.</li>
+<li><code>bias_initializer</code>: Initializer for the bias vector.</li>
+<li><code>kernel_regularizer</code>: Regularizer function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>bias_regularizer</code>: Regularizer function applied to the bias vector.</li>
+<li><code>activity_regularizer</code>: Regularizer function applied to
+    the output of the layer (its "activation").</li>
+<li><code>kernel_constraint</code>: Constraint function applied to the kernel matrix.</li>
+<li><code>bias_constraint</code>: Constraint function applied to the bias vector.</li>
+</ul>
+<p><strong>Input shape</strong></p>
+<p>4D tensor with shape:
+<code>(batch, channels, rows, cols)</code> if data_format='channels_first'
+or 4D tensor with shape:
+<code>(batch, rows, cols, channels)</code> if data_format='channels_last'.</p>
+<p><strong>Output shape</strong></p>
+<p>4D tensor with shape:
+<code>(batch, filters, new_rows, new_cols)</code> if data_format='channels_first'
+or 4D tensor with shape:
+<code>(batch, new_rows, new_cols, filters)</code> if data_format='channels_last'.
+<code>rows</code> and <code>cols</code> values might have changed due to padding.</p>
+<p><strong>References</strong></p>
+<ul>
+<li><a href="https://arxiv.org/abs/1603.07285v1">A guide to convolution arithmetic for deep
+  learning</a></li>
+<li><a href="https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf">Deconvolutional
+  Networks</a></li>
+</ul>
+<h2 id="quantconv3dtranspose">QuantConv3DTranspose<a class="headerlink" href="#quantconv3dtranspose" title="Permanent link">&para;</a></h2>
+<p><div class="codehilite"><pre><span></span><span class="n">QuantConv3DTranspose</span><span class="p">(</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">output_padding</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">input_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+Transposed quantized convolution layer (sometimes called Deconvolution).</p>
+<p>The need for transposed convolutions generally arises
+from the desire to use a transformation going in the opposite direction
+of a normal convolution, i.e., from something that has the shape of the
+output of some convolution to something that has the shape of its input
+while maintaining a connectivity pattern that is compatible with
+said convolution. <code>input_quantizer</code> and <code>kernel_quantizer</code>
+are the element-wise quantization functions to use. If both quantization functions
+are <code>None</code> this layer is equivalent to <code>Conv3DTranspose</code>.</p>
+<p>When using this layer as the first layer in a model, provide the keyword argument
+<code>input_shape</code> (tuple of integers, does not include the sample axis),
+e.g. <code>input_shape=(128, 128, 128, 3)</code> for a 128x128x128 volume with 3 channels
+if <code>data_format="channels_last"</code>.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filters</code>: Integer, the dimensionality of the output space
+    (i.e. the number of output filters in the convolution).</li>
+<li><code>kernel_size</code>: An integer or tuple/list of 3 integers, specifying the depth, height
+    and width of the 3D convolution window. Can be a single integer to specify the
+    same value for all spatial dimensions.</li>
+<li><code>strides</code>: An integer or tuple/list of 3 integers, specifying the strides of the
+    convolution along the depth, height and width. Can be a single integer to
+    specify the same value for all spatial dimensions. Specifying any stride
+    value != 1 is incompatible with specifying any <code>dilation_rate</code> value != 1.</li>
+<li><code>padding</code>: one of <code>"valid"</code> or <code>"same"</code> (case-insensitive).</li>
+<li><code>output_padding</code>: An integer or tuple/list of 3 integers, specifying the amount
+    of padding along the depth, height, and width. Can be a single integer to
+    specify the same value for all spatial dimensions. The amount of output
+    padding along a given dimension must be lower than the stride along that
+    same dimension. If set to <code>None</code> (default), the output shape is inferred.</li>
+<li><code>data_format</code>: A string, one of <code>channels_last</code> (default) or <code>channels_first</code>. The
+    ordering of the dimensions in the inputs. <code>channels_last</code> corresponds to inputs
+    with shape <code>(batch, depth, height, width, channels)</code> while <code>channels_first</code>
+    corresponds to inputs with shape <code>(batch, channels, depth, height, width)</code>.
+    It defaults to the <code>image_data_format</code> value found in your Keras config file at
+    <code>~/.keras/keras.json</code>. If you never set it, then it will be "channels_last".</li>
+<li><code>dilation_rate</code>: an integer or tuple/list of 3 integers, specifying the dilation
+    rate to use for dilated convolution. Can be a single integer to specify the
+    same value for all spatial dimensions. Currently, specifying any <code>dilation_rate</code>
+    value != 1 is incompatible with specifying any stride value != 1.</li>
+<li><code>activation</code>: Activation function to use. If you don't specify anything,
+    no activation is applied (<code>a(x) = x</code>).</li>
+<li><code>use_bias</code>: Boolean, whether the layer uses a bias vector.</li>
+<li><code>input_quantizer</code>: Quantization function applied to the input of the layer.</li>
+<li><code>kernel_quantizer</code>: Quantization function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>kernel_initializer</code>: Initializer for the <code>kernel</code> weights matrix.</li>
+<li><code>bias_initializer</code>: Initializer for the bias vector.</li>
+<li><code>kernel_regularizer</code>: Regularizer function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>bias_regularizer</code>: Regularizer function applied to the bias vector.</li>
+<li><code>activity_regularizer</code>: Regularizer function applied to
+    the output of the layer (its "activation").</li>
+<li><code>kernel_constraint</code>: Constraint function applied to the kernel matrix.</li>
+<li><code>bias_constraint</code>: Constraint function applied to the bias vector.</li>
+</ul>
+<p><strong>Input shape</strong></p>
+<p>5D tensor with shape:
+<code>(batch, channels, depth, rows, cols)</code> if data_format='channels_first'
+or 5D tensor with shape:
+<code>(batch, depth, rows, cols, channels)</code> if data_format='channels_last'.</p>
+<p><strong>Output shape</strong></p>
+<p>5D tensor with shape:
+<code>(batch, filters, new_depth, new_rows, new_cols)</code> if data_format='channels_first'
+or 5D tensor with shape:
+<code>(batch, new_depth, new_rows, new_cols, filters)</code> if data_format='channels_last'.
+<code>depth</code> and <code>rows</code> and <code>cols</code> values might have changed due to padding.</p>
+<p><strong>References</strong></p>
+<ul>
+<li><a href="https://arxiv.org/abs/1603.07285v1">A guide to convolution arithmetic for deep
+  learning</a></li>
+<li><a href="https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf">Deconvolutional
+  Networks</a></li>
+</ul>
+<h2 id="quantlocallyconnected1d">QuantLocallyConnected1D<a class="headerlink" href="#quantlocallyconnected1d" title="Permanent link">&para;</a></h2>
+<p><div class="codehilite"><pre><span></span><span class="n">QuantLocallyConnected1D</span><span class="p">(</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">input_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">implementation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+Locally-connected quantized layer for 1D inputs.</p>
+<p>The <code>QuantLocallyConnected1D</code> layer works similarly to the <code>QuantConv1D</code> layer,
+except that weights are unshared, that is, a different set of filters is applied
+at each different patch of the input. <code>input_quantizer</code> and <code>kernel_quantizer</code>
+are the element-wise quantization functions to use. If both quantization functions
+are <code>None</code> this layer is equivalent to <code>LocallyConnected1D</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="codehilite"><pre><span></span><span class="c1"># apply a unshared weight convolution 1d of length 3 to a sequence with</span>
+<span class="c1"># 10 timesteps, with 64 output filters</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">QuantLocallyConnected1D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">32</span><span class="p">)))</span>
+<span class="c1"># now model.output_shape == (None, 8, 64)</span>
+<span class="c1"># add a new conv1d on top</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">QuantLocallyConnected1D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1"># now model.output_shape == (None, 6, 32)</span>
+</pre></div>
+
+</div>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filters</code>: Integer, the dimensionality of the output space
+    (i.e. the number of output filters in the convolution).</li>
+<li><code>kernel_size</code>: An integer or tuple/list of a single integer,
+    specifying the length of the 1D convolution window.</li>
+<li><code>strides</code>: An integer or tuple/list of a single integer, specifying the stride
+    length of the convolution. Specifying any stride value != 1 is incompatible
+    with specifying any <code>dilation_rate</code> value != 1.</li>
+<li><code>padding</code>: Currently only supports <code>"valid"</code> (case-insensitive).
+    <code>"same"</code> may be supported in the future.</li>
+<li><code>data_format</code>: A string, one of <code>channels_last</code> (default) or <code>channels_first</code>.
+    The ordering of the dimensions in the inputs. <code>channels_last</code> corresponds
+    to inputs with shape <code>(batch, length, channels)</code> while <code>channels_first</code>
+    corresponds to inputs with shape <code>(batch, channels, length)</code>. It defaults
+    to the <code>image_data_format</code> value found in your Keras config file at
+    <code>~/.keras/keras.json</code>. If you never set it, then it will be "channels_last".</li>
+<li><code>activation</code>: Activation function to use. If you don't specify anything,
+    no activation is applied (<code>a(x) = x</code>).</li>
+<li><code>use_bias</code>: Boolean, whether the layer uses a bias vector.</li>
+<li><code>input_quantizer</code>: Quantization function applied to the input of the layer.</li>
+<li><code>kernel_quantizer</code>: Quantization function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>kernel_initializer</code>: Initializer for the <code>kernel</code> weights matrix.</li>
+<li><code>bias_initializer</code>: Initializer for the bias vector.</li>
+<li><code>kernel_regularizer</code>: Regularizer function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>bias_regularizer</code>: Regularizer function applied to the bias vector.</li>
+<li><code>activity_regularizer</code>: Regularizer function applied to
+    the output of the layer (its "activation").</li>
+<li><code>kernel_constraint</code>: Constraint function applied to the kernel matrix.</li>
+<li><code>bias_constraint</code>: Constraint function applied to the bias vector.</li>
+<li>
+<p><code>implementation</code>: implementation mode, either <code>1</code> or <code>2</code>.
+    <code>1</code> loops over input spatial locations to perform the forward pass.
+    It is memory-efficient but performs a lot of (small) ops.</p>
+<p><code>2</code> stores layer weights in a dense but sparsely-populated 2D matrix
+and implements the forward pass as a single matrix-multiply. It uses
+a lot of RAM but performs few (large) ops.</p>
+<p>Depending on the inputs, layer parameters, hardware, and
+<code>tf.executing_eagerly()</code> one implementation can be dramatically faster
+(e.g. 50X) than another.</p>
+<p>It is recommended to benchmark both in the setting of interest to pick
+the most efficient one (in terms of speed and memory usage).</p>
+<p>Following scenarios could benefit from setting <code>implementation=2</code>:</p>
+<ul>
+<li>eager execution;</li>
+<li>inference;</li>
+<li>running on CPU;</li>
+<li>large amount of RAM available;</li>
+<li>small models (few filters, small kernel);</li>
+<li>using <code>padding=same</code> (only possible with <code>implementation=2</code>).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Input shape</strong></p>
+<p>3D tensor with shape: <code>(batch_size, steps, input_dim)</code></p>
+<p><strong>Output shape</strong></p>
+<p>3D tensor with shape: <code>(batch_size, new_steps, filters)</code>
+<code>steps</code> value might have changed due to padding or strides.</p>
+<h2 id="quantlocallyconnected2d">QuantLocallyConnected2D<a class="headerlink" href="#quantlocallyconnected2d" title="Permanent link">&para;</a></h2>
+<p><div class="codehilite"><pre><span></span><span class="n">QuantLocallyConnected2D</span><span class="p">(</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">input_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_quantizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">implementation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+Locally-connected quantized layer for 2D inputs.</p>
+<p>The <code>QuantLocallyConnected2D</code> layer works similarly to the <code>QuantConv2D</code> layer,
+except that weights are unshared, that is, a different set of filters is applied
+at each different patch of the input. <code>input_quantizer</code> and <code>kernel_quantizer</code>
+are the element-wise quantization functions to use. If both quantization functions
+are <code>None</code> this layer is equivalent to <code>LocallyConnected2D</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="codehilite"><pre><span></span><span class="c1"># apply a 3x3 unshared weights convolution with 64 output filters on a</span>
+<span class="mi">32</span><span class="n">x32</span> <span class="n">image</span>
+<span class="c1"># with `data_format=&quot;channels_last&quot;`:</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">QuantLocallyConnected2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="c1"># now model.output_shape == (None, 30, 30, 64)</span>
+<span class="c1"># notice that this layer will consume (30*30)*(3*3*3*64) + (30*30)*64</span>
+<span class="n">parameters</span>
+
+<span class="c1"># add a 3x3 unshared weights convolution on top, with 32 output filters:</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">QuantLocallyConnected2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="c1"># now model.output_shape == (None, 28, 28, 32)</span>
+</pre></div>
+
+</div>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filters</code>: Integer, the dimensionality of the output space
+    (i.e. the number of output filters in the convolution).</li>
+<li><code>kernel_size</code>: An integer or tuple/list of 2 integers, specifying the
+    width and height of the 2D convolution window. Can be a single integer to
+    specify the same value for all spatial dimensions.</li>
+<li><code>strides</code>: An integer or tuple/list of 2 integers, specifying the strides of the
+    convolution along the width and height. Can be a single integer to specify
+    the same value for all spatial dimensions.</li>
+<li><code>padding</code>: Currently only support <code>"valid"</code> (case-insensitive).
+    <code>"same"</code> will be supported in future.</li>
+<li><code>data_format</code>: A string, one of <code>channels_last</code> (default) or <code>channels_first</code>.
+    The ordering of the dimensions in the inputs. <code>channels_last</code> corresponds to
+    inputs with shape <code>(batch, height, width, channels)</code> while <code>channels_first</code>
+    corresponds to inputs with shape <code>(batch, channels, height, width)</code>. It
+    defaults to the <code>image_data_format</code> value found in your Keras config file at
+    <code>~/.keras/keras.json</code>. If you never set it, then it will be "channels_last".</li>
+<li><code>activation</code>: Activation function to use. If you don't specify anything,
+    no activation is applied (<code>a(x) = x</code>).</li>
+<li><code>use_bias</code>: Boolean, whether the layer uses a bias vector.</li>
+<li><code>input_quantizer</code>: Quantization function applied to the input of the layer.</li>
+<li><code>kernel_quantizer</code>: Quantization function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>kernel_initializer</code>: Initializer for the <code>kernel</code> weights matrix.</li>
+<li><code>bias_initializer</code>: Initializer for the bias vector.</li>
+<li><code>kernel_regularizer</code>: Regularizer function applied to the <code>kernel</code> weights matrix.</li>
+<li><code>bias_regularizer</code>: Regularizer function applied to the bias vector.</li>
+<li><code>activity_regularizer</code>: Regularizer function applied to
+    the output of the layer (its "activation").</li>
+<li><code>kernel_constraint</code>: Constraint function applied to the kernel matrix.</li>
+<li><code>bias_constraint</code>: Constraint function applied to the bias vector.</li>
+<li>
+<p><code>implementation</code>: implementation mode, either <code>1</code> or <code>2</code>.
+    <code>1</code> loops over input spatial locations to perform the forward pass.
+    It is memory-efficient but performs a lot of (small) ops.</p>
+<p><code>2</code> stores layer weights in a dense but sparsely-populated 2D matrix
+and implements the forward pass as a single matrix-multiply. It uses
+a lot of RAM but performs few (large) ops.</p>
+<p>Depending on the inputs, layer parameters, hardware, and
+<code>tf.executing_eagerly()</code> one implementation can be dramatically faster
+(e.g. 50X) than another.</p>
+<p>It is recommended to benchmark both in the setting of interest to pick
+the most efficient one (in terms of speed and memory usage).</p>
+<p>Following scenarios could benefit from setting <code>implementation=2</code>:</p>
+<ul>
+<li>eager execution;</li>
+<li>inference;</li>
+<li>running on CPU;</li>
+<li>large amount of RAM available;</li>
+<li>small models (few filters, small kernel);</li>
+<li>using <code>padding=same</code> (only possible with <code>implementation=2</code>).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Input shape</strong></p>
+<p>4D tensor with shape:
+<code>(samples, channels, rows, cols)</code> if data_format='channels_first'
+or 4D tensor with shape:
+<code>(samples, rows, cols, channels)</code> if data_format='channels_last'.</p>
+<p><strong>Output shape</strong></p>
+<p>4D tensor with shape:
+<code>(samples, filters, new_rows, new_cols)</code> if data_format='channels_first'
+or 4D tensor with shape:
+<code>(samples, new_rows, new_cols, filters)</code> if data_format='channels_last'.
+<code>rows</code> and <code>cols</code> values might have changed due to padding.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../examples/binarynet_cifar10/" title="Binarynet on CIFAR10" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Binarynet on CIFAR10
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../quantizers/" title="Quantizers" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Quantizers
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/plumerai" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/PlumeraiLab" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.linkedin.com/company/plumerai/" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.dc02f8ce.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML"></script>
+      
+    
+  </body>
+</html>
